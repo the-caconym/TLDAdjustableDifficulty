@@ -67,6 +67,8 @@ Alternatively, if you want to make sure it works, you can temporarily set a sett
 
 * The mod has been tested as compatible with version **1.12** of the game; it should however work on not-too-old previous versions (and possibly future ones) as well.
 
+* For now at least, the mod will **only** be active in survival (sandbox) mode.
+
 * The mod should work either on a new game or on an existing save; note that using it on an existing save won't change what already happened (for example, if you suddenly decrease wolves' spawns, you may need to kill the existing ones - they won't disappear by themselves).
 
 * You need to restart the game to take changes in the XML into account.
