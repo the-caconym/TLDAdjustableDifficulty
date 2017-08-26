@@ -1,0 +1,471 @@
+<!-- AdjustableDifficulty mod - configuration file.
+     This configuration file allows you to change various settings (mostly through scale values) for each of the
+     four difficulty settings.
+     The initial values are those set in the game initially for each of the difficulty settings. -->
+<config>
+
+
+<!-- PILGRIM -->
+<pilgrim>
+  <!-- TEMPERATURE DROP
+       The temperature will drop starting on day temp_drop_day_start and ending on temp_drop_day_end; after
+       temp_drop_day_end, the drop will have a constant value of temp_drop_celsius_max; between the start end the
+       end day, the drop will be a ratio of the time since the starting day.
+       IE, if temp_drop_day_start is 1, temp_drop_day_end is 100, temp_drop_celsius_max is 20 and it's the 25th day,
+       the current drop will be 25% of the max, so 5 degrees -->
+  <temp_drop_day_start value="1" />
+  <temp_drop_day_end value="2" />
+  <temp_drop_celsius_max value="0.0" />
+
+  <!-- NEEDS DECREASE
+       Scales how fast the needs of the player (fatigue, cold, thirst, and calories) decrease. -->
+  <player_needs_fatigue_scale value="1.0" />
+  <player_needs_cold_scale value="0.25" />
+  <player_needs_thirst_scale value="0.50" />
+  <player_needs_calories_burn_scale value="0.50" />
+
+  <!-- CONDITION RECOVERY
+       Scales the condition recovery gained from resting or when awake. -->
+  <player_recovery_rest_scale value="1.0" />
+  <player_recovery_awake_scale value="1.0" />
+
+  <!-- WEATHER
+       Scales the chances of a blizzard, and the duration of a currently active weather. This is also influenced by the map. -->
+  <weather_blizzard_chances_scale value="0.75" />
+  <weather_current_duration_scale value="1.50" />
+
+  <!-- LOOT - DECAY
+       Scales the rate of decay of objects in the world / on the player. -->
+  <objects_decay_rate_scale value="0.25" />
+
+  <!-- LOOT - CONTAINERS
+       Every container in the world has a dice roll to determine how many objects it contains when first opened. The min and max of this
+       roll are preset per container; this max is however decreased by the objects_containers_reduce_max value (and if the result is <0,
+       then the container will be empty).
+       On top of this, every container has a chance to be empty regardless of the roll; defined by the objects_containers_empty_chance
+       (between 0 and 100). -->
+  <objects_containers_reduce_max value="0" />
+  <objects_containers_empty_chance value="0" />
+
+  <!-- WILDLIFE - STRUGGLE DAMAGE
+       Scales for the damages to clothes (for damage_scale_clothing) or to the player (for either bear or wolves)
+       when a struggle occurs -->
+  <damage_scale_clothing value="1.0" />
+  <damage_scale_bear_attack value="1.0" />
+  <damage_scale_wolf_attack value="1.0" />
+
+  <!-- WILDLIFE - WOLF STRUGGLE PLAYER STRENGTH
+       Scales the strength of the player when rejecting a wolf during a struggle; this scales the strength of each of the
+       "taps" (mouse clicks) during such a struggle. This is also influenced by other factors (weapon used, etc.). -->
+  <wolf_struggle_defense_strength_scale value="1.25" />
+
+  <!-- WILDLIFE - SMELLING RANGE
+       Scales the range at which an agressive wildlife will smell the player if he's carrying food that can be smelled.
+       The final value will also depend on the quantity of meat, etc. but this scale is applied globally. -->
+  <predators_smell_distance_scale value="0.0" />
+
+  <!-- WILDLIFE - RESPAWN DELAYS
+       Scales for the respawn delay for all wildlife. This has a similar logic as temperature, that is: the scale
+       will have its full value (respawn_delay_scale_max) after respawn_delay_scale_day_end but between the starting day
+       and the ending day, it will have a ratio of that max value depending on how far along the day is from the starting
+       one. Note that if you set a starting day > 1, the scale will have a set value of 1 before that starting day.
+       Basically, this allows to set how much the wildlife tend to 'disappear' (how long it takes to come back) as the
+       days progress. -->
+  <respawn_delay_scale_day_start value="1" />
+  <respawn_delay_scale_day_end value="2" />
+  <respawn_delay_scale_max value="1.0" />
+
+  <!-- HYPOTHERMIA CURE
+       Scale for the delay before an hypothermia is cured. -->
+  <hypothermia_cure_delay_scale value="0.5" />
+
+  <!-- FISHING
+       This scales the time before a fish is catched, with a similar logic as for temperature and respawn delay: the scale
+       will have its full value after the ending day, and before that a ratio of the time spent between the starting end ending day.
+       As an example, if you set fishing_catch_scale_day_start to 1, fishing_catch_scale_day_end to 100, and fishing_catch_scale_max
+       to 4, then on the 50th day the time before a fish is catched would take twice as long (and on day 100 and later, four times as long). -->
+  <fishing_catch_scale_day_start value="1" />
+  <fishing_catch_scale_day_end value="2" />
+  <fishing_catch_scale_max value="1.0" />
+
+  <!-- WILDLIFE - AMOUNT
+       Each of the regions has a set of spawn points (for wolves, bears, deers, and rabbits). For EACH of those spawn points,
+       the parameters below scale:
+         - The chance of this particular spawn point being active (spawn points can become active or inactive regularly).
+         - The max amount of respawns per day for this spawn point.
+         - The max amount of simultaneous spawns for this spawn point during the day, and at night.
+       The scales are available for each animal. The way they work (by spawn point) can make it a bit tricky to adjust the amount
+       of wildlife properly; as such, it may be best to leave those values to 1.0 and use the difficulty settings (pilgrim, voyageur, etc.)
+       to tweak this. A further version of the mod should probably include a single scale that adjust the amount of wildlife reliably
+       by making changes to these four scales from this single value; but this would require quite a bit of adjusting/testing. -->
+  <!-- For wolves' spawn points -->
+  <wildlife_spawns_wolves_scale_chance_active value="1.0" />
+  <wildlife_spawns_wolves_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_wolves_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_wolves_scale_max_simultaneous_spawns_during_night value="1.0" />
+  <!-- For rabbits' spawn points -->
+  <wildlife_spawns_rabbits_scale_chance_active value="1.0" />
+  <wildlife_spawns_rabbits_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_rabbits_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_rabbits_scale_max_simultaneous_spawns_during_night value="1.0" />
+  <!-- For bears' spawn points -->
+  <wildlife_spawns_bears_scale_chance_active value="1.0" />
+  <wildlife_spawns_bears_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_bears_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_bears_scale_max_simultaneous_spawns_during_night value="1.0" />
+  <!-- For deers' spawn points -->
+  <wildlife_spawns_deers_scale_chance_active value="1.0" />
+  <wildlife_spawns_deers_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_deers_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_deers_scale_max_simultaneous_spawns_during_night value="1.0" />
+</pilgrim>
+
+
+<!-- VOYAGEUR -->
+<voyageur>
+  <!-- TEMPERATURE DROP
+       The temperature will drop starting on day temp_drop_day_start and ending on temp_drop_day_end; after
+       temp_drop_day_end, the drop will have a constant value of temp_drop_celsius_max; between the start end the
+       end day, the drop will be a ratio of the time since the starting day.
+       IE, if temp_drop_day_start is 1, temp_drop_day_end is 100, temp_drop_celsius_max is 20 and it's the 25th day,
+       the current drop will be 25% of the max, so 5 degrees -->
+  <temp_drop_day_start value="20" />
+  <temp_drop_day_end value="200" />
+  <temp_drop_celsius_max value="5.0" />
+
+  <!-- NEEDS DECREASE
+       Scales how fast the needs of the player (fatigue, cold, thirst, and calories) decrease. -->
+  <player_needs_fatigue_scale value="1.0" />
+  <player_needs_cold_scale value="1.0" />
+  <player_needs_thirst_scale value="1.0" />
+  <player_needs_calories_burn_scale value="0.9" />
+
+  <!-- CONDITION RECOVERY
+       Scales the condition recovery gained from resting or when awake. -->
+  <player_recovery_rest_scale value="1.0" />
+  <player_recovery_awake_scale value="1.0" />
+
+  <!-- WEATHER
+       Scales the chances of a blizzard, and the duration of a currently active weather. This is also influenced by the map. -->
+  <weather_blizzard_chances_scale value="1.0" />
+  <weather_current_duration_scale value="1.0" />
+
+  <!-- LOOT - DECAY
+       Scales the rate of decay of objects in the world / on the player. -->
+  <objects_decay_rate_scale value="0.8" />
+
+  <!-- LOOT - CONTAINERS
+       Every container in the world has a dice roll to determine how many objects it contains when first opened. The min and max of this
+       roll are preset per container; this max is however decreased by the objects_containers_reduce_max value (and if the result is <0,
+       then the container will be empty).
+       On top of this, every container has a chance to be empty regardless of the roll; defined by the objects_containers_empty_chance
+       (between 0 and 100). -->
+  <objects_containers_reduce_max value="0" />
+  <objects_containers_empty_chance value="0" />
+
+  <!-- WILDLIFE - STRUGGLE DAMAGE
+       Scales for the damages to clothes (for damage_scale_clothing) or to the player (for either bear or wolves)
+       when a struggle occurs -->
+  <damage_scale_clothing value="1.0" />
+  <damage_scale_bear_attack value="1.0" />
+  <damage_scale_wolf_attack value="1.0" />
+
+  <!-- WILDLIFE - WOLF STRUGGLE PLAYER STRENGTH
+       Scales the strength of the player when rejecting a wolf during a struggle; this scales the strength of each of the
+       "taps" (mouse clicks) during such a struggle. This is also influenced by other factors (weapon used, etc.). -->
+  <wolf_struggle_defense_strength_scale value="1.0" />
+
+  <!-- WILDLIFE - SMELLING RANGE
+       Scales the range at which an agressive wildlife will smell the player if he's carrying food that can be smelled.
+       The final value will also depend on the quantity of meat, etc. but this scale is applied globally. -->
+  <predators_smell_distance_scale value="0.5" />
+
+  <!-- WILDLIFE - RESPAWN DELAYS
+       Scales for the respawn delay for all wildlife. This has a similar logic as temperature, that is: the scale
+       will have its full value (respawn_delay_scale_max) after respawn_delay_scale_day_end but between the starting day
+       and the ending day, it will have a ratio of that max value depending on how far along the day is from the starting
+       one. Note that if you set a starting day > 1, the scale will have a set value of 1 before that starting day.
+       Basically, this allows to set how much the wildlife tend to 'disappear' (how long it takes to come back) as the
+       days progress. -->
+  <respawn_delay_scale_day_start value="10" />
+  <respawn_delay_scale_day_end value="150" />
+  <respawn_delay_scale_max value="1.5" />
+
+  <!-- HYPOTHERMIA CURE
+       Scale for the delay before an hypothermia is cured. -->
+  <hypothermia_cure_delay_scale value="1.0" />
+
+  <!-- FISHING
+       This scales the time before a fish is catched, with a similar logic as for temperature and respawn delay: the scale
+       will have its full value after the ending day, and before that a ratio of the time spent between the starting end ending day.
+       As an example, if you set fishing_catch_scale_day_start to 1, fishing_catch_scale_day_end to 100, and fishing_catch_scale_max
+       to 4, then on the 50th day the time before a fish is catched would take twice as long (and on day 100 and later, four times as long). -->
+  <fishing_catch_scale_day_start value="1" />
+  <fishing_catch_scale_day_end value="2" />
+  <fishing_catch_scale_max value="1.0" />
+
+  <!-- WILDLIFE - AMOUNT
+       Each of the regions has a set of spawn points (for wolves, bears, deers, and rabbits). For EACH of those spawn points,
+       the parameters below scale:
+         - The chance of this particular spawn point being active (spawn points can become active or inactive regularly).
+         - The max amount of respawns per day for this spawn point.
+         - The max amount of simultaneous spawns for this spawn point during the day, and at night.
+       The scales are available for each animal. The way they work (by spawn point) can make it a bit tricky to adjust the amount
+       of wildlife properly; as such, it may be best to leave those values to 1.0 and use the difficulty settings (pilgrim, voyageur, etc.)
+       to tweak this. A further version of the mod should probably include a single scale that adjust the amount of wildlife reliably
+       by making changes to these four scales from this single value; but this would require quite a bit of adjusting/testing. -->
+  <!-- For wolves' spawn points -->
+  <wildlife_spawns_wolves_scale_chance_active value="1.0" />
+  <wildlife_spawns_wolves_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_wolves_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_wolves_scale_max_simultaneous_spawns_during_night value="1.0" />
+  <!-- For rabbits' spawn points -->
+  <wildlife_spawns_rabbits_scale_chance_active value="1.0" />
+  <wildlife_spawns_rabbits_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_rabbits_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_rabbits_scale_max_simultaneous_spawns_during_night value="1.0" />
+  <!-- For bears' spawn points -->
+  <wildlife_spawns_bears_scale_chance_active value="1.0" />
+  <wildlife_spawns_bears_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_bears_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_bears_scale_max_simultaneous_spawns_during_night value="1.0" />
+  <!-- For deers' spawn points -->
+  <wildlife_spawns_deers_scale_chance_active value="1.0" />
+  <wildlife_spawns_deers_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_deers_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_deers_scale_max_simultaneous_spawns_during_night value="1.0" />
+</voyageur>
+
+
+<!-- STALKER -->
+<stalker>
+  <!-- TEMPERATURE DROP
+       The temperature will drop starting on day temp_drop_day_start and ending on temp_drop_day_end; after
+       temp_drop_day_end, the drop will have a constant value of temp_drop_celsius_max; between the start end the
+       end day, the drop will be a ratio of the time since the starting day.
+       IE, if temp_drop_day_start is 1, temp_drop_day_end is 100, temp_drop_celsius_max is 20 and it's the 25th day,
+       the current drop will be 25% of the max, so 5 degrees -->
+  <temp_drop_day_start value="20" />
+  <temp_drop_day_end value="200" />
+  <temp_drop_celsius_max value="10.0" />
+
+  <!-- NEEDS DECREASE
+       Scales how fast the needs of the player (fatigue, cold, thirst, and calories) decrease. -->
+  <player_needs_fatigue_scale value="1.0" />
+  <player_needs_cold_scale value="1.2" />
+  <player_needs_thirst_scale value="1.0" />
+  <player_needs_calories_burn_scale value="0.8" />
+
+  <!-- CONDITION RECOVERY
+       Scales the condition recovery gained from resting or when awake. -->
+  <player_recovery_rest_scale value="1.0" />
+  <player_recovery_awake_scale value="1.0" />
+
+  <!-- WEATHER
+       Scales the chances of a blizzard, and the duration of a currently active weather. This is also influenced by the map. -->
+  <weather_blizzard_chances_scale value="1.25" />
+  <weather_current_duration_scale value="0.5" />
+
+  <!-- LOOT - DECAY
+       Scales the rate of decay of objects in the world / on the player. -->
+  <objects_decay_rate_scale value="1.0" />
+
+  <!-- LOOT - CONTAINERS
+       Every container in the world has a dice roll to determine how many objects it contains when first opened. The min and max of this
+       roll are preset per container; this max is however decreased by the objects_containers_reduce_max value (and if the result is <0,
+       then the container will be empty).
+       On top of this, every container has a chance to be empty regardless of the roll; defined by the objects_containers_empty_chance
+       (between 0 and 100). -->
+  <objects_containers_reduce_max value="1" />
+  <objects_containers_empty_chance value="75" />
+
+  <!-- WILDLIFE - STRUGGLE DAMAGE
+       Scales for the damages to clothes (for damage_scale_clothing) or to the player (for either bear or wolves)
+       when a struggle occurs -->
+  <damage_scale_clothing value="1.0" />
+  <damage_scale_bear_attack value="1.0" />
+  <damage_scale_wolf_attack value="1.0" />
+
+  <!-- WILDLIFE - WOLF STRUGGLE PLAYER STRENGTH
+       Scales the strength of the player when rejecting a wolf during a struggle; this scales the strength of each of the
+       "taps" (mouse clicks) during such a struggle. This is also influenced by other factors (weapon used, etc.). -->
+  <wolf_struggle_defense_strength_scale value="0.85" />
+
+  <!-- WILDLIFE - SMELLING RANGE
+       Scales the range at which an agressive wildlife will smell the player if he's carrying food that can be smelled.
+       The final value will also depend on the quantity of meat, etc. but this scale is applied globally. -->
+  <predators_smell_distance_scale value="1.0" />
+
+  <!-- WILDLIFE - RESPAWN DELAYS
+       Scales for the respawn delay for all wildlife. This has a similar logic as temperature, that is: the scale
+       will have its full value (respawn_delay_scale_max) after respawn_delay_scale_day_end but between the starting day
+       and the ending day, it will have a ratio of that max value depending on how far along the day is from the starting
+       one. Note that if you set a starting day > 1, the scale will have a set value of 1 before that starting day.
+       Basically, this allows to set how much the wildlife tend to 'disappear' (how long it takes to come back) as the
+       days progress. -->
+  <respawn_delay_scale_day_start value="10" />
+  <respawn_delay_scale_day_end value="150" />
+  <respawn_delay_scale_max value="2.0" />
+
+  <!-- HYPOTHERMIA CURE
+       Scale for the delay before an hypothermia is cured. -->
+  <hypothermia_cure_delay_scale value="1.5" />
+
+  <!-- FISHING
+       This scales the time before a fish is catched, with a similar logic as for temperature and respawn delay: the scale
+       will have its full value after the ending day, and before that a ratio of the time spent between the starting end ending day.
+       As an example, if you set fishing_catch_scale_day_start to 1, fishing_catch_scale_day_end to 100, and fishing_catch_scale_max
+       to 4, then on the 50th day the time before a fish is catched would take twice as long (and on day 100 and later, four times as long). -->
+  <fishing_catch_scale_day_start value="1" />
+  <fishing_catch_scale_day_end value="2" />
+  <fishing_catch_scale_max value="1.0" />
+
+  <!-- WILDLIFE - AMOUNT
+       Each of the regions has a set of spawn points (for wolves, bears, deers, and rabbits). For EACH of those spawn points,
+       the parameters below scale:
+         - The chance of this particular spawn point being active (spawn points can become active or inactive regularly).
+         - The max amount of respawns per day for this spawn point.
+         - The max amount of simultaneous spawns for this spawn point during the day, and at night.
+       The scales are available for each animal. The way they work (by spawn point) can make it a bit tricky to adjust the amount
+       of wildlife properly; as such, it may be best to leave those values to 1.0 and use the difficulty settings (pilgrim, voyageur, etc.)
+       to tweak this. A further version of the mod should probably include a single scale that adjust the amount of wildlife reliably
+       by making changes to these four scales from this single value; but this would require quite a bit of adjusting/testing. -->
+  <!-- For wolves' spawn points -->
+  <wildlife_spawns_wolves_scale_chance_active value="1.0" />
+  <wildlife_spawns_wolves_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_wolves_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_wolves_scale_max_simultaneous_spawns_during_night value="1.0" />
+  <!-- For rabbits' spawn points -->
+  <wildlife_spawns_rabbits_scale_chance_active value="1.0" />
+  <wildlife_spawns_rabbits_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_rabbits_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_rabbits_scale_max_simultaneous_spawns_during_night value="1.0" />
+  <!-- For bears' spawn points -->
+  <wildlife_spawns_bears_scale_chance_active value="1.0" />
+  <wildlife_spawns_bears_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_bears_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_bears_scale_max_simultaneous_spawns_during_night value="1.0" />
+  <!-- For deers' spawn points -->
+  <wildlife_spawns_deers_scale_chance_active value="1.0" />
+  <wildlife_spawns_deers_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_deers_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_deers_scale_max_simultaneous_spawns_during_night value="1.0" />
+</stalker>
+
+
+<!-- INTERLOPER -->
+<interloper>
+  <!-- TEMPERATURE DROP
+       The temperature will drop starting on day temp_drop_day_start and ending on temp_drop_day_end; after
+       temp_drop_day_end, the drop will have a constant value of temp_drop_celsius_max; between the start end the
+       end day, the drop will be a ratio of the time since the starting day.
+       IE, if temp_drop_day_start is 1, temp_drop_day_end is 100, temp_drop_celsius_max is 20 and it's the 25th day,
+       the current drop will be 25% of the max, so 5 degrees -->
+  <temp_drop_day_start value="5" />
+  <temp_drop_day_end value="50" />
+  <temp_drop_celsius_max value="20.0" />
+
+  <!-- NEEDS DECREASE
+       Scales how fast the needs of the player (fatigue, cold, thirst, and calories) decrease. -->
+  <player_needs_fatigue_scale value="0.8" />
+  <player_needs_cold_scale value="1.75" />
+  <player_needs_thirst_scale value="1.2" />
+  <player_needs_calories_burn_scale value="1.0" />
+
+  <!-- CONDITION RECOVERY
+       Scales the condition recovery gained from resting or when awake. -->
+  <player_recovery_rest_scale value="0.5" />
+  <player_recovery_awake_scale value="0.5" />
+
+  <!-- WEATHER
+       Scales the chances of a blizzard, and the duration of a currently active weather. This is also influenced by the map. -->
+  <weather_blizzard_chances_scale value="2.0" />
+  <weather_current_duration_scale value="0.25" />
+
+  <!-- LOOT - DECAY
+       Scales the rate of decay of objects in the world / on the player. -->
+  <objects_decay_rate_scale value="2.0" />
+
+  <!-- LOOT - CONTAINERS
+       Every container in the world has a dice roll to determine how many objects it contains when first opened. The min and max of this
+       roll are preset per container; this max is however decreased by the objects_containers_reduce_max value (and if the result is <0,
+       then the container will be empty).
+       On top of this, every container has a chance to be empty regardless of the roll; defined by the objects_containers_empty_chance
+       (between 0 and 100). -->
+  <objects_containers_reduce_max value="2" />
+  <objects_containers_empty_chance value="90" />
+
+  <!-- WILDLIFE - STRUGGLE DAMAGE
+       Scales for the damages to clothes (for damage_scale_clothing) or to the player (for either bear or wolves)
+       when a struggle occurs -->
+  <damage_scale_clothing value="1.5" />
+  <damage_scale_bear_attack value="1.0" />
+  <damage_scale_wolf_attack value="1.5" />
+
+  <!-- WILDLIFE - WOLF STRUGGLE PLAYER STRENGTH
+       Scales the strength of the player when rejecting a wolf during a struggle; this scales the strength of each of the
+       "taps" (mouse clicks) during such a struggle. This is also influenced by other factors (weapon used, etc.). -->
+  <wolf_struggle_defense_strength_scale value="0.9" />
+
+  <!-- WILDLIFE - SMELLING RANGE
+       Scales the range at which an agressive wildlife will smell the player if he's carrying food that can be smelled.
+       The final value will also depend on the quantity of meat, etc. but this scale is applied globally. -->
+  <predators_smell_distance_scale value="1.0" />
+
+  <!-- WILDLIFE - RESPAWN DELAYS
+       Scales for the respawn delay for all wildlife. This has a similar logic as temperature, that is: the scale
+       will have its full value (respawn_delay_scale_max) after respawn_delay_scale_day_end but between the starting day
+       and the ending day, it will have a ratio of that max value depending on how far along the day is from the starting
+       one. Note that if you set a starting day > 1, the scale will have a set value of 1 before that starting day.
+       Basically, this allows to set how much the wildlife tend to 'disappear' (how long it takes to come back) as the
+       days progress. -->
+  <respawn_delay_scale_day_start value="10" />
+  <respawn_delay_scale_day_end value="50" />
+  <respawn_delay_scale_max value="4.0" />
+
+  <!-- HYPOTHERMIA CURE
+       Scale for the delay before an hypothermia is cured. -->
+  <hypothermia_cure_delay_scale value="2.0" />
+
+  <!-- FISHING
+       This scales the time before a fish is catched, with a similar logic as for temperature and respawn delay: the scale
+       will have its full value after the ending day, and before that a ratio of the time spent between the starting end ending day.
+       As an example, if you set fishing_catch_scale_day_start to 1, fishing_catch_scale_day_end to 100, and fishing_catch_scale_max
+       to 4, then on the 50th day the time before a fish is catched would take twice as long (and on day 100 and later, four times as long). -->
+  <fishing_catch_scale_day_start value="10" />
+  <fishing_catch_scale_day_end value="50" />
+  <fishing_catch_scale_max value="2.0" />
+
+  <!-- WILDLIFE - AMOUNT
+       Each of the regions has a set of spawn points (for wolves, bears, deers, and rabbits). For EACH of those spawn points,
+       the parameters below scale:
+         - The chance of this particular spawn point being active (spawn points can become active or inactive regularly).
+         - The max amount of respawns per day for this spawn point.
+         - The max amount of simultaneous spawns for this spawn point during the day, and at night.
+       The scales are available for each animal. The way they work (by spawn point) can make it a bit tricky to adjust the amount
+       of wildlife properly; as such, it may be best to leave those values to 1.0 and use the difficulty settings (pilgrim, voyageur, etc.)
+       to tweak this. A further version of the mod should probably include a single scale that adjust the amount of wildlife reliably
+       by making changes to these four scales from this single value; but this would require quite a bit of adjusting/testing. -->
+  <!-- For wolves' spawn points -->
+  <wildlife_spawns_wolves_scale_chance_active value="1.0" />
+  <wildlife_spawns_wolves_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_wolves_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_wolves_scale_max_simultaneous_spawns_during_night value="1.0" />
+  <!-- For rabbits' spawn points -->
+  <wildlife_spawns_rabbits_scale_chance_active value="1.0" />
+  <wildlife_spawns_rabbits_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_rabbits_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_rabbits_scale_max_simultaneous_spawns_during_night value="1.0" />
+  <!-- For bears' spawn points -->
+  <wildlife_spawns_bears_scale_chance_active value="1.0" />
+  <wildlife_spawns_bears_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_bears_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_bears_scale_max_simultaneous_spawns_during_night value="1.0" />
+  <!-- For deers' spawn points -->
+  <wildlife_spawns_deers_scale_chance_active value="1.0" />
+  <wildlife_spawns_deers_scale_max_respawn_per_day value="1.0" />
+  <wildlife_spawns_deers_scale_max_simultaneous_spawns_during_day value="1.0" />
+  <wildlife_spawns_deers_scale_max_simultaneous_spawns_during_night value="1.0" />
+</interloper>
+
+</config>
