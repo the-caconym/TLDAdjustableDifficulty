@@ -4,6 +4,8 @@ This is a fan-made, experimental mod for the game [The Long Dark](http://hinterl
 
 ### Disclaimer
 
+* **DO NOT** report bugs to Hinterland Studios if you use this mod; any bug you encounter may be due to the mod.
+
 * This is completely fan-made and I have **no affiliation** with Hinterland Studios whatsoever.
 
 * This mod is **experimental**; it should work but there is no guarantee it won't screw up your save somehow (though corrupting a save is highly unlikely). It's also very rough in terms of use (you need to edit an XML file).
